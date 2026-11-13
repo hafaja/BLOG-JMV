@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jean Marie Vianney Hafashimana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: columna editorial de ancho medio, cabecera fija con navegación, secciones alternas sobre fondo claro con acento verde azulado */
+:root{
+  --bg:#F3F6F5; --surface:#FFFFFF; --ink:#13242B; --muted:#55666C;
+  --accent:#0E6B66; --accent-soft:#DCEDEA; --sun:#C98A12; --line:#D5DFDD;
+  --display:"Literata",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1A1E; --surface:#16252B; --ink:#E6EEEC; --muted:#9DB0B0;
+    --accent:#4FB8AE; --accent-soft:#1D3A3B; --sun:#E5B04A; --line:#284047;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1A1E; --surface:#16252B; --ink:#E6EEEC; --muted:#9DB0B0;
+  --accent:#4FB8AE; --accent-soft:#1D3A3B; --sun:#E5B04A; --line:#284047;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.2;text-wrap:balance;margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* Cabecera */
+header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--ink);text-decoration:none}
+nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.95rem;font-weight:500}
+nav a:hover,nav a.on{color:var(--accent)}
+
+/* Portada */
+.hero{padding:72px 0 56px}
+.hero .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:center}
+.kicker{color:var(--accent);font-weight:600;letter-spacing:.02em;font-size:.95rem;margin:0 0 14px}
+.hero h1{font-size:clamp(2rem,4.6vw,3.2rem)}
+.hero .lead{font-size:1.2rem;color:var(--muted);max-width:34em;margin:20px 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:8px;font:600 1rem var(--body);text-decoration:none;border:1.5px solid var(--accent);cursor:pointer;background:transparent;color:var(--accent)}
+.btn.solid{background:var(--accent);color:var(--surface)}
+.btn:hover{filter:brightness(1.08)}
+.btn.small{padding:7px 14px;font-size:.9rem}
+.btn.danger{border-color:#B3412F;color:#B3412F}
+.btn.danger.solid{background:#B3412F;color:#fff}
+.monogram{aspect-ratio:1;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;position:relative;max-width:320px;width:100%;justify-self:center}
+.monogram span{font-family:var(--display);font-size:clamp(3.5rem,9vw,6rem);color:var(--accent);font-weight:600}
+.monogram::after{content:"";position:absolute;inset:-10px;border:2px dashed var(--line);border-radius:50%}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tag{font-size:.85rem;padding:4px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+
+section{padding:64px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px}
+.intro{color:var(--muted);max-width:40em;margin:0 0 32px}
+
+/* Sobre mí */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+.about p{margin:0 0 16px;max-width:38em}
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px;display:grid;gap:14px;align-content:start}
+.facts dt{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.facts dd{margin:2px 0 0}
+
+/* Áreas */
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.area{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:10px;padding:22px}
+.area:nth-child(4){border-top-color:var(--sun)}
+.area h3{font-size:1.15rem;margin-bottom:8px}
+.area p{margin:0;color:var(--muted);font-size:.98rem}
+
+/* Bases, visión */
+.bases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.bases div{border-top:3px solid var(--accent);padding-top:12px}
+.bases h3{font-size:1.05rem;margin-bottom:6px}
+.bases p{margin:0;font-size:.95rem;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.checks li{padding-left:28px;position:relative}
+.checks li::before{content:"";position:absolute;left:4px;top:.55em;width:12px;height:6px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
+.checks.small{font-size:.95rem;gap:6px}
+.focus{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:12px}
+.focus h3{font-size:1.35rem}
+.focus p{margin:0}
+.question{font-family:var(--display);font-style:italic;color:var(--accent);border-left:3px solid var(--sun);padding-left:14px}
+.link{margin-top:6px!important}
+.cierre{text-align:center;background:var(--accent-soft)}
+.cierre .wrap{display:grid;justify-items:center;gap:14px}
+.lemas{font-weight:600;color:var(--accent);margin:0;letter-spacing:.02em}
+.cierre blockquote{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,1.9rem);line-height:1.35;margin:0;max-width:30em;text-wrap:balance}
+.cierre .intro{margin:0}
+.contacto-datos{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.contacto-datos div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 20px;display:grid;gap:2px;min-width:240px}
+.contacto-datos .dt{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.contacto-datos a{font-weight:600;font-size:1.1rem;text-decoration:none;font-variant-numeric:tabular-nums}
+
+/* Proyectos */
+.projects{display:grid;gap:16px}
+.project{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
+.project:last-child{border-bottom:0}
+.project .type{color:var(--accent);font-weight:600;font-size:.9rem}
+.project h3{font-size:1.25rem;margin-bottom:6px}
+.project p{margin:0;color:var(--muted);max-width:40em}
+
+/* Formación */
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.timeline li{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.timeline .field{font-weight:600;color:var(--accent)}
+.timeline .detail{color:var(--ink)}
+.timeline .detail small{display:block;color:var(--muted);font-size:.92rem}
+
+/* Artículos */
+.art-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:5px 14px;font:500 .9rem var(--body);cursor:pointer}
+.chip.on{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.articles{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.card:hover{border-color:var(--accent)}
+.card .meta{font-size:.85rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.card .cat{color:var(--accent);font-weight:600}
+.card h3{font-size:1.2rem}
+.card p{margin:0;color:var(--muted);font-size:.98rem}
+.card .more{margin-top:auto;color:var(--accent);font-weight:600;font-size:.95rem}
+.draft{font-size:.75rem;font-weight:600;background:var(--sun);color:#fff;padding:2px 8px;border-radius:4px}
+.status{padding:28px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
+
+/* Lectura */
+.reader{max-width:700px;margin:0 auto}
+.reader .back{background:none;border:0;color:var(--accent);font:600 1rem var(--body);cursor:pointer;padding:0;margin-bottom:24px}
+.reader h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:8px 0 12px}
+.reader .meta{color:var(--muted);font-size:.95rem;margin-bottom:28px}
+.reader .summary{font-size:1.2rem;color:var(--muted);border-left:3px solid var(--accent);padding-left:16px;margin:0 0 28px}
+.reader .body p{margin:0 0 18px}
+.reader .body h3{font-size:1.3rem;margin:32px 0 12px}
+.reader .actions{display:flex;gap:10px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+
+/* Editor */
+.editor{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;display:grid;gap:16px;margin-bottom:28px}
+.editor h3{font-size:1.25rem}
+.editor label{display:grid;gap:6px;font-weight:600;font-size:.95rem}
+.editor input[type=text],.editor textarea,.editor select{font:400 1rem var(--body);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%}
+.editor textarea{min-height:260px;resize:vertical;line-height:1.55}
+.editor .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.editor .check{display:flex;align-items:center;gap:8px;font-weight:500}
+.editor .hint{font-weight:400;color:var(--muted);font-size:.85rem}
+.editor .err{color:#B3412F;font-size:.95rem;min-height:1.2em;margin:0}
+.confirm{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--accent-soft);padding:12px 16px;border-radius:8px}
+
+/* Contacto */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.contact .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px}
+.contact .box h3{font-size:1.1rem;margin-bottom:6px}
+.contact .box p{margin:0;color:var(--muted)}
+footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.pie{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.acceso-btn{background:none;border:0;color:var(--muted);font:inherit;cursor:pointer;text-decoration:underline}
+.login{margin-top:16px}
+.login form{display:flex;gap:12px;align-items:end;flex-wrap:wrap}
+.login label{display:grid;gap:4px;font-size:.85rem;font-weight:600}
+.login input{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.l-err{color:#B3412F;margin:0;flex-basis:100%;min-height:1em}
+
+[hidden]{display:none!important}
+@media (max-width:760px){
+  .hero .grid,.about,.two,.bases{grid-template-columns:1fr}
+  .monogram{max-width:200px;order:-1}
+  .project,.timeline li{grid-template-columns:1fr;gap:4px}
+  .editor .row{grid-template-columns:1fr}
+  nav ul{gap:12px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Jean Marie Vianney H.</a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#vision">Visión</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#formacion">Formación</a></li>
+        <li><a href="#articulos">Artículos</a></li>
+        <li><a href="#colaborar">Colaborar</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap grid">
+      <div>
+        <p class="kicker">Perfil profesional · Innovación social</p>
+        <h1>Jean Marie Vianney Hafashimana</h1>
+        <p class="lead">Psicología, tecnología y acompañamiento centrado en la persona. Proyectos con impacto en el bienestar, la autonomía y la inclusión.</p>
+        <div class="btns">
+          <a class="btn solid" href="#articulos">Leer artículos</a>
+          <a class="btn" href="#colaborar">Propuesta de colaboración</a>
+        </div>
+        <div class="tags">
+          <span class="tag">Gerontología</span><span class="tag">Neuropsicología</span><span class="tag">Psicología positiva</span><span class="tag">Desarrollo de soluciones digitales</span>
+        </div>
+      </div>
+      <div class="monogram" aria-hidden="true"><span>JMV</span></div>
+    </div>
+  </div>
+
+  <section id="sobre-mi">
+    <div class="wrap about">
+      <div>
+        <h2>Una trayectoria que une conocimiento y acción</h2>
+        <p>Pongo la psicología y la gerontología al servicio de soluciones prácticas y humanas. Mi propuesta es convertir conocimientos psicológicos y tecnológicos en recursos accesibles para personas, familias y entidades.</p>
+        <div class="bases">
+          <div><h3>Base humana</h3><p>Psicología, acompañamiento y atención centrada en la persona.</p></div>
+          <div><h3>Base científica</h3><p>Formación en gerontología y neuropsicología; investigación doctoral sobre deterioro cognitivo leve.</p></div>
+          <div><h3>Base tecnológica</h3><p>Diseño UX/UI y desarrollo de plataformas web, aplicaciones y herramientas digitales.</p></div>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Ubicación</dt><dd>Salou · Vila-seca (Tarragona)</dd></div>
+        <div><dt>Idiomas</dt><dd>Español, francés, catalán e inglés</dd></div>
+        <div><dt>Investigación</dt><dd>Doctorando en la Université de Yaoundé I</dd></div>
+        <div><dt>Libro</dt><dd><em>La mente también se entrena</em> (Colección MAR, vol. I)</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="vision">
+    <div class="wrap two">
+      <div>
+        <h2>Una mirada integral de la persona</h2>
+        <p class="intro">No centrarnos únicamente en las dificultades: reconocer capacidades, vínculos, historia y posibilidades.</p>
+        <ul class="checks">
+          <li>Promover autonomía y participación a lo largo de la vida.</li>
+          <li>Acompañar a personas mayores, familias y cuidadores.</li>
+          <li>Utilizar la tecnología para acercar servicios y oportunidades.</li>
+          <li>Diseñar soluciones inclusivas, sencillas y centradas en las personas.</li>
+        </ul>
+      </div>
+      <div class="focus">
+        <p class="kicker">Psicología positiva</p>
+        <h3>Poner el foco en las fortalezas</h3>
+        <p>Cada persona conserva recursos, experiencias, conocimientos y capacidades que pueden convertirse en puntos de apoyo para su bienestar.</p>
+        <ul class="checks small">
+          <li>Reconocer fortalezas y capacidades personales.</li>
+          <li>Favorecer emociones positivas, resiliencia y relaciones significativas.</li>
+          <li>Promover sentido, participación y propósito.</li>
+          <li>Acompañar sin reducir a la persona a su diagnóstico o dificultad.</li>
+        </ul>
+        <p class="question">¿Qué tiene esta persona, qué sabe y qué puede seguir desarrollando?</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <div class="wrap">
+      <h2>Proyectos</h2>
+      <p class="intro">Iniciativas que unen psicología, tecnología e innovación social.</p>
+      <div class="projects">
+        <div class="project"><div class="type">Proyecto digital</div><div><h3>CuidaAPP · CuidarConSentido</h3><p>Formación, orientación y apoyo para familiares y profesionales cuidadores. Plataforma web y aplicación móvil con recursos prácticos para el cuidado en Alzheimer y otras demencias, actividades de estimulación cognitiva y contenidos multilingües.</p><p class="link"><a href="https://cuidarconsentido.netlify.app">cuidarconsentido.netlify.app</a></p></div></div>
+        <div class="project"><div class="type">Acompañamiento</div><div><h3>ABBAcompañarte</h3><p>Tecnología de voz e inteligencia artificial al servicio de la conexión humana: un compañero conversacional para personas mayores que favorece la conexión social, ayuda a reducir el aislamiento y puede ofrecer información de seguimiento a cuidadores, con garantías de privacidad.</p></div></div>
+        <div class="project"><div class="type">Innovación social</div><div><h3>Logos Acompaña y Logos Intranet</h3><p>Herramientas digitales para la orientación ciudadana y el trabajo de las entidades sociales. Logos Acompaña facilita el acceso a trámites, prestaciones, recursos y servicios sociales; Logos Intranet apoya la gestión, el seguimiento y la coordinación de los equipos.</p></div></div>
+        <div class="project"><div class="type">Investigación doctoral</div><div><h3>Potenciar la mente en el ocaso de la vida</h3><p>Intervención neuropsicológica y acompañamiento integral de personas mayores con deterioro cognitivo leve: estrategias de estimulación cognitiva, preservación de capacidades y autonomía, dignidad y calidad de vida, conectando investigación, práctica y herramientas digitales.</p></div></div>
+        <div class="project"><div class="type">Publicación</div><div><h3>La mente también se entrena</h3><p>Primer volumen de la Colección MAR: ejercicios y orientaciones para mantener la mente activa.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formacion">
+    <div class="wrap">
+      <h2>Formación</h2>
+      <p class="intro">Una trayectoria multidisciplinar.</p>
+      <ul class="timeline">
+        <li><span class="field">Doctorado (en curso)</span><span class="detail">Potenciar la mente en el ocaso de la vida<small>Université de Yaoundé I · dirigido por el Pr. Mayi Marc Bruno</small></span></li>
+        <li><span class="field">Psicología positiva</span><span class="detail">Máster en Psicología Positiva<small>Formación en curso</small></span></li>
+        <li><span class="field">Psicología</span><span class="detail">Gerontología y neuropsicología<small>Especialización en neuropsicología gerontológica</small></span></li>
+        <li><span class="field">Teología</span><span class="detail">Pontificia Studiorum Universitas Salesiana<small>Summa cum laude</small></span></li>
+        <li><span class="field">Finanzas</span><span class="detail">Máster 2<small>ISEM / Université de Douala</small></span></li>
+        <li><span class="field">Filosofía</span><span class="detail">Formación en filosofía</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="articulos">
+    <div class="wrap">
+      <div id="list-view">
+        <div class="art-head">
+          <div>
+            <h2>Artículos</h2>
+            <p class="intro" style="margin:0">Reflexiones y guías sobre envejecimiento, mente y cuidado.</p>
+          </div>
+          <button class="btn solid" id="btn-new" hidden>+ Nuevo artículo</button>
+        </div>
+        <form class="editor" id="editor" hidden novalidate>
+          <h3 id="editor-title">Nuevo artículo</h3>
+          <label for="f-title">Título<input type="text" id="f-title" maxlength="160" required></label>
+          <div class="row">
+            <label for="f-cat">Categoría
+              <select id="f-cat">
+                <option>Gerontología</option><option>Neuropsicología</option><option>Psicología positiva</option><option>Soluciones digitales</option><option>Innovación social</option><option>Cuidadores</option>
+              </select>
+            </label>
+            <label for="f-date">Fecha<input type="text" id="f-date" placeholder="AAAA-MM-DD"></label>
+          </div>
+          <label for="f-summary">Resumen <span class="hint">Una o dos frases que aparecen en la tarjeta.</span><textarea id="f-summary" style="min-height:80px" maxlength="400"></textarea></label>
+          <label for="f-body">Contenido <span class="hint">Deja una línea en blanco entre párrafos. Empieza una línea con ## para un subtítulo.</span><textarea id="f-body"></textarea></label>
+          <label class="check" for="f-pub"><input type="checkbox" id="f-pub" checked> Publicado (si lo desmarcas, queda como borrador y solo tú lo ves)</label>
+          <p class="err" id="f-err" role="alert"></p>
+          <div class="btns">
+            <button type="submit" class="btn solid" id="btn-save">Guardar</button>
+            <button type="button" class="btn" id="btn-cancel">Cancelar</button>
+          </div>
+        </form>
+        <div class="filters" id="filters"></div>
+        <div id="articles" class="articles"></div>
+        <div id="art-status" class="status">Cargando artículos…</div>
+      </div>
+
+      <div id="read-view" class="reader" hidden>
+        <button class="back" id="btn-back">← Todos los artículos</button>
+        <div class="meta"><span class="cat" id="r-cat"></span></div>
+        <h1 id="r-title"></h1>
+        <div class="meta" id="r-meta"></div>
+        <p class="summary" id="r-summary"></p>
+        <div class="body" id="r-body"></div>
+        <div class="actions" id="r-actions" hidden>
+          <button class="btn small" id="btn-edit">Editar</button>
+          <button class="btn small danger" id="btn-del">Eliminar</button>
+          <div class="confirm" id="del-confirm" hidden>
+            <span>¿Eliminar este artículo? No se puede deshacer.</span>
+            <button class="btn small danger solid" id="btn-del-yes">Sí, eliminar</button>
+            <button class="btn small" id="btn-del-no">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="colaborar">
+    <div class="wrap">
+      <h2>¿Dónde puedo aportar valor?</h2>
+      <p class="intro">Me gustaría integrarme en un equipo, entidad o proyecto que trabaje por el bienestar, el envejecimiento saludable y la inclusión.</p>
+      <div class="areas">
+        <article class="area"><h3>Proyectos</h3><p>Diseño y desarrollo de iniciativas sociales y tecnológicas.</p></article>
+        <article class="area"><h3>Tecnología</h3><p>Webs, PWA, aplicaciones y herramientas con IA.</p></article>
+        <article class="area"><h3>Intervención</h3><p>Gerontología, estimulación cognitiva y acompañamiento.</p></article>
+        <article class="area"><h3>Financiación</h3><p>Colaboración en convocatorias y proyectos subvencionados.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="cierre">
+    <div class="wrap">
+      <p class="lemas">Cuidar las capacidades. Fortalecer los vínculos. Innovar para incluir.</p>
+      <blockquote>«Una sociedad más inclusiva, autónoma y saludable se construye poniendo a la persona en el centro».</blockquote>
+      <p class="intro">Propuesta abierta a colaboración, alianzas y proyectos compartidos.</p>
+      <div class="contacto-datos">
+        <div><span class="dt">Correo</span><a href="mailto:hafaja14@gmail.com">hafaja14@gmail.com</a></div>
+        <div><span class="dt">Teléfono</span><a href="tel:+34651839583">+34 651 83 95 83</a></div>
+      </div>
+      <div class="btns"><a class="btn solid" href="https://wa.me/34651839583">Escríbeme por WhatsApp</a><a class="btn" href="https://cuidarconsentido.netlify.app">Conoce CuidarConSentido</a></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap pie">
+  <span>© <span id="year"></span> Jean Marie Vianney Hafashimana · Tarragona</span>
+  <button type="button" class="acceso-btn" id="btn-acceso">Acceso</button>
+</div>
+<div class="wrap login" id="login" hidden>
+  <form id="login-form" novalidate>
+    <label for="l-email">Correo<input type="email" id="l-email" autocomplete="username"></label>
+    <label for="l-pass">Contraseña<input type="password" id="l-pass" autocomplete="current-password"></label>
+    <button class="btn small solid" id="l-btn" type="submit">Entrar</button>
+    <p class="l-err" id="l-err" role="alert"></p>
+  </form>
+  <div id="login-out" hidden><span id="login-who"></span> <button type="button" class="btn small" id="l-salir">Salir</button></div>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+/* ===== CONFIGURACIÓN: copia aquí los datos de tu proyecto Supabase =====
+   Supabase > Project Settings > API > Project URL y anon public key.
+   La clave anon es pública por diseño: la seguridad la ponen las reglas RLS. */
+var SUPABASE_URL = "https://TU-PROYECTO.supabase.co";
+var SUPABASE_ANON_KEY = "TU-CLAVE-ANON";
+/* ====================================================================== */
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  $("year").textContent = new Date().getFullYear();
+  var DEMO = /TU-PROYECTO/.test(SUPABASE_URL) || !window.supabase;
+  var sb = DEMO ? null : window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  var TABLA = "web_articulos";
+
+  var state = { canEdit:false, items:[], filter:"Todas", current:null, editingId:null, loaded:false };
+  var MONTHS = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+
+  function fmtDate(s){ var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(s||""); if(!m) return s||""; return parseInt(m[3],10)+" de "+MONTHS[parseInt(m[2],10)-1]+" de "+m[1]; }
+  function today(){ var d=new Date(),p=function(n){return (n<10?"0":"")+n;}; return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()); }
+  function readTime(t){ var w=(t||"").trim().split(/\s+/).length; return Math.max(1,Math.round(w/200))+" min de lectura"; }
+  function el(tag,cls,text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+
+  var EJEMPLO = [{ id:"ejemplo", titulo:"La mente también se entrena: por qué estimular la cognición en la vejez", categoria:"Neuropsicología", fecha:today(), publicado:true,
+    resumen:"Envejecer no significa resignarse a perder capacidades. La estimulación cognitiva ayuda a mantener la memoria, la atención y la autonomía en el día a día.",
+    contenido:"Durante mucho tiempo se pensó que el deterioro de la memoria y la atención era una consecuencia inevitable de la edad. Hoy sabemos que el cerebro conserva capacidad de adaptación a lo largo de toda la vida.\n\n## Qué es la estimulación cognitiva\n\nUn conjunto de actividades organizadas para ejercitar la memoria, la atención, el lenguaje, la orientación y la planificación, adaptadas a cada persona.\n\n## El papel de quienes cuidan\n\nConversar sobre recuerdos, leer juntos la prensa o planificar la compra se convierten en oportunidades de estimulación." }];
+
+  function visible(){
+    return state.items.filter(function(a){ return state.canEdit || a.publicado !== false; })
+      .sort(function(a,b){ return (b.fecha||"").localeCompare(a.fecha||""); });
+  }
+  function renderFilters(){
+    var cats=["Todas"]; visible().forEach(function(a){ if(a.categoria && cats.indexOf(a.categoria)<0) cats.push(a.categoria); });
+    var box=$("filters"); box.textContent=""; if(cats.length<3) return;
+    cats.forEach(function(c){ var b=el("button","chip"+(state.filter===c?" on":""),c); b.type="button";
+      b.addEventListener("click",function(){ state.filter=c; renderList(); }); box.appendChild(b); });
+  }
+  function renderList(){
+    renderFilters();
+    var list=$("articles"); list.textContent="";
+    var items=visible().filter(function(a){ return state.filter==="Todas" || a.categoria===state.filter; });
+    var st=$("art-status");
+    if(!state.loaded) return;
+    if(!items.length){ st.hidden=false; st.textContent = state.canEdit ? "Todavía no hay artículos. Pulsa «Nuevo artículo» para publicar el primero." : "Pronto se publicarán los primeros artículos."; return; }
+    st.hidden = !DEMO; if(DEMO) st.textContent="Vista de ejemplo: rellena SUPABASE_URL y SUPABASE_ANON_KEY en este archivo para mostrar tus artículos reales.";
+    items.forEach(function(a){
+      var c=el("button","card"); c.type="button";
+      var meta=el("div","meta"); meta.appendChild(el("span","cat",a.categoria||"")); meta.appendChild(el("span",null,fmtDate(a.fecha)));
+      if(a.publicado===false) meta.appendChild(el("span","draft","Borrador"));
+      c.appendChild(meta); c.appendChild(el("h3",null,a.titulo||"Sin título"));
+      if(a.resumen) c.appendChild(el("p",null,a.resumen));
+      c.appendChild(el("span","more","Leer artículo →"));
+      c.addEventListener("click",function(){ location.hash="art-"+a.id; });
+      list.appendChild(c);
+    });
+  }
+  function renderBody(text){
+    var box=$("r-body"); box.textContent="";
+    (text||"").replace(/\r/g,"").split(/\n\s*\n/).forEach(function(block){
+      var t=block.trim(); if(!t) return;
+      if(t.indexOf("## ")===0) box.appendChild(el("h3",null,t.slice(3).trim()));
+      else box.appendChild(el("p",null,t.replace(/\n/g," ")));
+    });
+  }
+  function showArticle(id){
+    var a=state.items.filter(function(x){ return String(x.id)===id; })[0];
+    if(!a){ if(state.loaded) showList(); return; }
+    state.current=a; $("list-view").hidden=true; $("read-view").hidden=false;
+    $("r-cat").textContent=a.categoria||""; $("r-title").textContent=a.titulo||"";
+    $("r-meta").textContent=fmtDate(a.fecha)+" · "+readTime(a.contenido)+(a.publicado===false?" · Borrador":"");
+    $("r-summary").textContent=a.resumen||""; $("r-summary").hidden=!a.resumen;
+    renderBody(a.contenido);
+    $("r-actions").hidden=!state.canEdit; $("del-confirm").hidden=true;
+    document.title=(a.titulo||"Artículo")+" · Jean Marie Vianney Hafashimana";
+    $("articulos").scrollIntoView();
+  }
+  function showList(){ state.current=null; $("read-view").hidden=true; $("list-view").hidden=false; document.title="Jean Marie Vianney Hafashimana"; renderList(); }
+  function route(){ var h=location.hash.replace(/^#/,""); if(h.indexOf("art-")===0) showArticle(h.slice(4)); else if(!$("read-view").hidden) showList(); }
+  window.addEventListener("hashchange",route);
+  $("btn-back").addEventListener("click",function(){ location.hash="articulos"; showList(); });
+
+  /* ----- Editor ----- */
+  function openEditor(a){
+    state.editingId=a?a.id:null;
+    $("editor-title").textContent=a?"Editar artículo":"Nuevo artículo";
+    $("f-title").value=a?a.titulo||"":""; $("f-cat").value=a&&a.categoria?a.categoria:"Gerontología";
+    $("f-date").value=a?a.fecha||today():today(); $("f-summary").value=a?a.resumen||"":"";
+    $("f-body").value=a?a.contenido||"":""; $("f-pub").checked=a?a.publicado!==false:true; $("f-err").textContent="";
+    showList(); if(location.hash.indexOf("#art-")===0) history.replaceState(null,"","#articulos");
+    $("editor").hidden=false; $("btn-new").hidden=true; $("f-title").focus();
+  }
+  function closeEditor(){ $("editor").hidden=true; $("btn-new").hidden=!state.canEdit; state.editingId=null; }
+  $("btn-new").addEventListener("click",function(){ openEditor(null); });
+  $("btn-cancel").addEventListener("click",closeEditor);
+  $("btn-edit").addEventListener("click",function(){ if(state.current) openEditor(state.current); });
+  $("editor").addEventListener("submit",function(e){
+    e.preventDefault();
+    var title=$("f-title").value.trim(), body=$("f-body").value.trim(), date=$("f-date").value.trim()||today();
+    if(!title){ $("f-err").textContent="Escribe un título."; return; }
+    if(!body){ $("f-err").textContent="Escribe el contenido del artículo."; return; }
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){ $("f-err").textContent="La fecha debe tener el formato AAAA-MM-DD, por ejemplo "+today()+"."; return; }
+    var data={ titulo:title, categoria:$("f-cat").value, fecha:date, resumen:$("f-summary").value.trim(), contenido:body, publicado:$("f-pub").checked };
+    $("btn-save").disabled=true; $("f-err").textContent="";
+    var q = state.editingId ? sb.from(TABLA).update(data).eq("id",state.editingId).select().single() : sb.from(TABLA).insert(data).select().single();
+    q.then(function(r){
+      $("btn-save").disabled=false;
+      if(r.error){ $("f-err").textContent="No se pudo guardar: "+r.error.message; return; }
+      closeEditor(); cargar().then(function(){ location.hash="art-"+r.data.id; showArticle(String(r.data.id)); });
+    });
+  });
+  $("btn-del").addEventListener("click",function(){ $("del-confirm").hidden=false; });
+  $("btn-del-no").addEventListener("click",function(){ $("del-confirm").hidden=true; });
+  $("btn-del-yes").addEventListener("click",function(){
+    if(!state.current) return;
+    sb.from(TABLA).delete().eq("id",state.current.id).then(function(r){
+      if(r.error){ $("del-confirm").firstChild.textContent="No se pudo eliminar: "+r.error.message; return; }
+      location.hash="articulos"; cargar().then(showList);
+    });
+  });
+
+  /* ----- Acceso (solo para ti) ----- */
+  function pintarAcceso(session){
+    var dentro=!!session;
+    $("login-form").hidden=dentro; $("login-out").hidden=!dentro;
+    if(dentro) $("login-who").textContent="Has entrado como "+session.user.email+".";
+  }
+  $("btn-acceso").addEventListener("click",function(){ $("login").hidden=!$("login").hidden; if(!$("login").hidden && !$("login-form").hidden) $("l-email").focus(); });
+  $("login-form").addEventListener("submit",function(e){
+    e.preventDefault(); if(DEMO){ $("l-err").textContent="Primero configura Supabase en este archivo."; return; }
+    $("l-err").textContent=""; $("l-btn").disabled=true;
+    sb.auth.signInWithPassword({ email:$("l-email").value.trim(), password:$("l-pass").value }).then(function(r){
+      $("l-btn").disabled=false;
+      if(r.error){ $("l-err").textContent="Correo o contraseña incorrectos."; return; }
+      $("l-pass").value="";
+    });
+  });
+  $("l-salir").addEventListener("click",function(){ sb.auth.signOut(); });
+
+  function comprobarPermiso(session){
+    pintarAcceso(session);
+    if(!session){ state.canEdit=false; $("btn-new").hidden=true; return cargar(); }
+    return sb.rpc("web_es_autor").then(function(r){
+      state.canEdit = !!r.data; $("btn-new").hidden=!state.canEdit || !$("editor").hidden;
+      if(!state.canEdit) $("login-who").textContent="Esta cuenta no tiene permiso para publicar.";
+      return cargar();
+    });
+  }
+
+  /* ----- Datos ----- */
+  function cargar(){
+    if(DEMO){ state.items=EJEMPLO; state.loaded=true; renderList(); route(); return Promise.resolve(); }
+    return sb.from(TABLA).select("*").order("fecha",{ascending:false}).then(function(r){
+      if(r.error){ $("art-status").hidden=false; $("art-status").textContent="No se han podido cargar los artículos. Vuelve a intentarlo en unos minutos."; return; }
+      state.items=(r.data||[]).map(function(a){ a.id=String(a.id); return a; }); state.loaded=true;
+      if(!$("read-view").hidden && state.current){
+        if(state.items.some(function(x){ return x.id===state.current.id; })) showArticle(state.current.id); else showList();
+      } else { renderList(); route(); }
+    });
+  }
+
+  // Resaltar menú
+  var links=[].slice.call(document.querySelectorAll("nav a"));
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) links.forEach(function(l){ l.classList.toggle("on", l.getAttribute("href")==="#"+en.target.id); }); }); },{rootMargin:"-45% 0px -50% 0px"});
+    document.querySelectorAll("section[id]").forEach(function(s){ io.observe(s); });
+  }
+
+  if(DEMO){ cargar(); }
+  else {
+    sb.auth.getSession().then(function(r){ comprobarPermiso(r.data.session); });
+    sb.auth.onAuthStateChange(function(ev, session){ if(ev==="SIGNED_IN"||ev==="SIGNED_OUT") comprobarPermiso(session); });
+  }
+})();
+</script>
+</body>
+</html>
