@@ -107,6 +107,39 @@ section h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px}
 .contacto-datos .dt{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
 .contacto-datos a{font-weight:600;font-size:1.1rem;text-decoration:none;font-variant-numeric:tabular-nums}
 
+/* Imágenes */
+.retrato{justify-self:center;width:100%;max-width:320px;aspect-ratio:1;border-radius:50%;overflow:hidden;border:6px solid var(--surface);box-shadow:0 0 0 2px var(--accent-soft)}
+.retrato img{width:100%;height:100%;object-fit:cover;object-position:50% 25%}
+.foto{width:100%;border-radius:12px;margin:0 0 20px;aspect-ratio:16/10;object-fit:cover}
+.rueda{width:100%;max-width:260px;justify-self:center}
+.project .type{display:flex;flex-direction:column;gap:10px}
+.plogo{width:150px;background:#fff;border-radius:8px;padding:6px}
+.logos2{display:flex;gap:6px;flex-wrap:wrap}
+.logos2 img{height:56px;width:auto;background:#fff;border-radius:6px;padding:4px}
+.pfoto{width:100%;max-width:200px;aspect-ratio:4/3;object-fit:cover;border-radius:10px}
+.colab{width:120px;mix-blend-mode:multiply;border-radius:8px}
+
+/* Invitación a colaborar */
+.invitacion{margin-top:36px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;background:var(--accent);color:#fff;border-radius:18px;padding:36px 40px;position:relative;overflow:hidden}
+.invitacion::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;border:2px solid rgba(255,255,255,.18)}
+.invitacion h3{color:#fff;font-size:clamp(1.4rem,2.6vw,1.9rem);margin:6px 0 12px}
+.invitacion p{margin:0;color:rgba(255,255,255,.88);max-width:34em}
+.inv-kicker{font-size:.8rem!important;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--sun)!important}
+.inv-acciones{display:grid;gap:10px;position:relative;z-index:1}
+.inv-btn{background:#fff;color:var(--accent);border-color:#fff;justify-content:center}
+.inv-btn2{background:transparent;color:#fff;border-color:rgba(255,255,255,.7);justify-content:center}
+.inv-datos{font-size:.88rem;text-align:center;font-variant-numeric:tabular-nums}
+@media (max-width:760px){.invitacion{grid-template-columns:1fr;padding:28px 22px}}
+
+.project.libro{grid-template-columns:300px 1fr}
+.portadas{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.portadas img{aspect-ratio:5/8;object-fit:cover}
+.subtitulo-libro{font-weight:600;color:var(--ink)!important;margin:0 0 10px!important}
+.portada-libro{width:100%;max-width:200px;border-radius:4px 10px 10px 4px;box-shadow:-4px 0 0 #163d33,0 14px 30px rgba(0,0,0,.25)}
+.cita-libro{font-family:var(--display);font-style:italic;color:var(--accent);border-left:3px solid var(--sun);margin:16px 0;padding-left:14px;max-width:36em}
+.edicion{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.95rem}
+.edicion .tag{background:var(--sun);color:#fff;border:0;font-weight:600}
+
 /* Proyectos */
 .projects{display:grid;gap:16px}
 .project{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line)}
@@ -178,7 +211,8 @@ footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 @media (max-width:760px){
   .hero .grid,.about,.two,.bases{grid-template-columns:1fr}
   .monogram{max-width:200px;order:-1}
-  .project,.timeline li{grid-template-columns:1fr;gap:4px}
+  .project,.project.libro,.timeline li{grid-template-columns:1fr;gap:4px}
+  .portadas{max-width:320px}
   .editor .row{grid-template-columns:1fr}
   nav ul{gap:12px}
 }
@@ -217,7 +251,7 @@ footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-s
           <span class="tag">Gerontología</span><span class="tag">Neuropsicología</span><span class="tag">Psicología positiva</span><span class="tag">Desarrollo de soluciones digitales</span>
         </div>
       </div>
-      <div class="monogram" aria-hidden="true"><span>JMV</span></div>
+      <div class="retrato"><img src="retrato.jpg" alt="Jean Marie Vianney Hafashimana" width="270" height="228"></div>
     </div>
   </div>
 
@@ -246,6 +280,7 @@ footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <div>
         <h2>Una mirada integral de la persona</h2>
         <p class="intro">No centrarnos únicamente en las dificultades: reconocer capacidades, vínculos, historia y posibilidades.</p>
+        <img class="foto" src="vision.jpg" alt="Pareja de personas mayores sonriendo al aire libre" loading="lazy">
         <ul class="checks">
           <li>Promover autonomía y participación a lo largo de la vida.</li>
           <li>Acompañar a personas mayores, familias y cuidadores.</li>
@@ -256,6 +291,7 @@ footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <div class="focus">
         <p class="kicker">Psicología positiva</p>
         <h3>Poner el foco en las fortalezas</h3>
+        <img class="rueda" src="psicologia.jpg" alt="Bienestar integral: emociones positivas, relaciones saludables, salud mental y física, realización personal" loading="lazy">
         <p>Cada persona conserva recursos, experiencias, conocimientos y capacidades que pueden convertirse en puntos de apoyo para su bienestar.</p>
         <ul class="checks small">
           <li>Reconocer fortalezas y capacidades personales.</li>
@@ -273,11 +309,14 @@ footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <h2>Proyectos</h2>
       <p class="intro">Iniciativas que unen psicología, tecnología e innovación social.</p>
       <div class="projects">
-        <div class="project"><div class="type">Proyecto digital</div><div><h3>CuidaAPP · CuidarConSentido</h3><p>Formación, orientación y apoyo para familiares y profesionales cuidadores. Plataforma web y aplicación móvil con recursos prácticos para el cuidado en Alzheimer y otras demencias, actividades de estimulación cognitiva y contenidos multilingües.</p><p class="link"><a href="https://cuidarconsentido.netlify.app">cuidarconsentido.netlify.app</a></p></div></div>
-        <div class="project"><div class="type">Acompañamiento</div><div><h3>ABBAcompañarte</h3><p>Tecnología de voz e inteligencia artificial al servicio de la conexión humana: un compañero conversacional para personas mayores que favorece la conexión social, ayuda a reducir el aislamiento y puede ofrecer información de seguimiento a cuidadores, con garantías de privacidad.</p></div></div>
-        <div class="project"><div class="type">Innovación social</div><div><h3>Logos Acompaña y Logos Intranet</h3><p>Herramientas digitales para la orientación ciudadana y el trabajo de las entidades sociales. Logos Acompaña facilita el acceso a trámites, prestaciones, recursos y servicios sociales; Logos Intranet apoya la gestión, el seguimiento y la coordinación de los equipos.</p></div></div>
-        <div class="project"><div class="type">Investigación doctoral</div><div><h3>Potenciar la mente en el ocaso de la vida</h3><p>Intervención neuropsicológica y acompañamiento integral de personas mayores con deterioro cognitivo leve: estrategias de estimulación cognitiva, preservación de capacidades y autonomía, dignidad y calidad de vida, conectando investigación, práctica y herramientas digitales.</p></div></div>
-        <div class="project"><div class="type">Publicación</div><div><h3>La mente también se entrena</h3><p>Primer volumen de la Colección MAR: ejercicios y orientaciones para mantener la mente activa.</p></div></div>
+        <div class="project"><div class="type">Proyecto digital<img class="plogo" src="logo-cuidaapp.jpg" alt="Logo de CuidaAPP CuidarConSentido" loading="lazy"><img class="pfoto" src="cuidaapp.jpg" alt="Una cuidadora y una mujer mayor usando una tableta" loading="lazy"></div><div><h3>CuidaAPP · CuidarConSentido</h3><p>Formación, orientación y apoyo para familiares y profesionales cuidadores. Plataforma web y aplicación móvil con recursos prácticos para el cuidado en Alzheimer y otras demencias, actividades de estimulación cognitiva y contenidos multilingües.</p><p class="link"><a href="https://cuidarconsentido.netlify.app">cuidarconsentido.netlify.app</a></p></div></div>
+        <div class="project"><div class="type">Acompañamiento<img class="plogo" src="logo-abba.jpg" alt="Logo de ABBAcompañarte" loading="lazy"><img class="pfoto" src="abba.jpg" alt="Hombre mayor hablando con su móvil con auriculares" loading="lazy"></div><div><h3>ABBAcompañarte</h3><p>Tecnología de voz e inteligencia artificial al servicio de la conexión humana: un compañero conversacional para personas mayores que favorece la conexión social, ayuda a reducir el aislamiento y puede ofrecer información de seguimiento a cuidadores, con garantías de privacidad.</p></div></div>
+        <div class="project"><div class="type">Innovación social<span class="logos2"><img src="logo-acompanya.jpg" alt="Logo de Logos Acompaña" loading="lazy"><img src="logo-intranet.jpg" alt="Logo de Logos Intranet" loading="lazy"></span><img class="pfoto" src="logos.jpg" alt="Pantalla de Logos Acompaña en un portátil" loading="lazy"></div><div><h3>Logos Acompaña y Logos Intranet</h3><p>Herramientas digitales para la orientación ciudadana y el trabajo de las entidades sociales. Logos Acompaña facilita el acceso a trámites, prestaciones, recursos y servicios sociales; Logos Intranet apoya la gestión, el seguimiento y la coordinación de los equipos.</p></div></div>
+        <div class="project"><div class="type">Investigación doctoral<img class="pfoto" src="tesis.jpg" alt="Hombre mayor caminando con bastón al atardecer" loading="lazy"></div><div><h3>Potenciar la mente en el ocaso de la vida</h3><p>Intervención neuropsicológica y acompañamiento integral de personas mayores con deterioro cognitivo leve: estrategias de estimulación cognitiva, preservación de capacidades y autonomía, dignidad y calidad de vida, conectando investigación, práctica y herramientas digitales.</p></div></div>
+        <div class="project libro"><div class="type">Publicación<div class="portadas"><img class="portada-libro" src="libro-la-mente.jpg" alt="Portada de La mente también se entrena, de Jean Marie Vianney Hafashimana" loading="lazy"><img class="portada-libro" src="libro-train-your-mind.jpg" alt="Portada de la edición en inglés, Train Your Mind, Too" loading="lazy"></div></div><div><h3>La mente también se entrena</h3><p class="subtitulo-libro">El método científico para cuidar la memoria, la atención y la autonomía</p><p>Primer volumen de la Colección MAR. A partir de su investigación doctoral en gerontología, el autor presenta el Método MAR: un camino integral y basado en la ciencia para cuidar la memoria, la atención y la autonomía en cualquier etapa de la vida. Incluye un programa práctico de doce semanas.</p>
+          <blockquote class="cita-libro">«Así como el cuerpo se puede entrenar, también la mente. Este libro te enseña cómo, a cualquier edad».</blockquote>
+          <p class="edicion"><span class="tag">Edición en inglés</span> <span><em>Train Your Mind, Too</em>: The Science-Based Method to Care for Memory, Attention, and Autonomy</span></p>
+          <div class="btns" style="margin-top:18px"><a class="btn solid" href="https://link.amazon/B0fYWkSOq" target="_blank" rel="noopener">Comprar en Amazon</a></div></div></div>
       </div>
     </div>
   </section>
@@ -362,11 +401,24 @@ footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-s
         <article class="area"><h3>Intervención</h3><p>Gerontología, estimulación cognitiva y acompañamiento.</p></article>
         <article class="area"><h3>Financiación</h3><p>Colaboración en convocatorias y proyectos subvencionados.</p></article>
       </div>
+      <div class="invitacion">
+        <div class="inv-txt">
+          <p class="inv-kicker">Colaboremos</p>
+          <h3>Construyamos juntos una colaboración mutua y fiable</h3>
+          <p>Si quieres que trabajemos en proyectos, tecnología, intervención o financiación, escríbeme. Te responderé personalmente para estudiar cómo podemos sumar.</p>
+        </div>
+        <div class="inv-acciones">
+          <a class="btn inv-btn" href="mailto:hafaja14@gmail.com?subject=Propuesta%20de%20colaboraci%C3%B3n">Escríbeme un correo</a>
+          <a class="btn inv-btn2" href="https://wa.me/34651839583?text=Hola%20Jean%20Marie%2C%20me%20gustar%C3%ADa%20hablar%20de%20una%20posible%20colaboraci%C3%B3n.">Escríbeme por WhatsApp</a>
+          <p class="inv-datos">hafaja14@gmail.com · +34 651 83 95 83</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="contacto" class="cierre">
     <div class="wrap">
+      <img class="colab" src="colaboracion.jpg" alt="" loading="lazy">
       <p class="lemas">Cuidar las capacidades. Fortalecer los vínculos. Innovar para incluir.</p>
       <blockquote>«Una sociedad más inclusiva, autónoma y saludable se construye poniendo a la persona en el centro».</blockquote>
       <p class="intro">Propuesta abierta a colaboración, alianzas y proyectos compartidos.</p>
