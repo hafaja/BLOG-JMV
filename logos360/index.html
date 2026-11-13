@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LOGOS 360 · Redacción</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<header class="top">
+  <a class="marca" href="../" title="Volver a la Intranet"><span class="logo">L</span> LOGOS <b>360</b> <small>Redacción</small></a>
+  <div class="top-der">
+    <span id="quien" class="quien"></span>
+    <a class="btn ghost-claro" id="ver-blog" target="_blank" rel="noopener">Ver el blog</a>
+    <a class="btn ghost-claro" href="../">← Intranet</a>
+  </div>
+</header>
+
+<div id="acceso" class="acceso" hidden>
+  <h1>LOGOS 360</h1>
+  <p id="acceso-msg"></p>
+  <a class="btn" href="../">Ir a la Intranet</a>
+</div>
+
+<div id="app" class="app" hidden>
+  <!-- LISTA -->
+  <aside class="lista">
+    <div class="acciones-lista">
+      <button class="btn" id="nuevo-div">+ Artículo</button>
+      <button class="btn oro" id="nuevo-cie">+ Artículo científico</button>
+    </div>
+    <button class="btn ghost full" id="btn-semana">Proponer temas de la semana con IA</button>
+    <div class="resumen-estados" id="contadores"></div>
+    <div class="filtros">
+      <select id="f-tipo" aria-label="Tipo"><option value="">Todos los tipos</option><option value="divulgacion">Divulgación</option><option value="cientifico">Científicos</option></select>
+      <select id="f-idioma" aria-label="Idioma"><option value="">Todos los idiomas</option><option value="es">Español</option><option value="ca">Català</option><option value="fr">Français</option><option value="en">English</option></select>
+    </div>
+    <input type="search" id="f-buscar" placeholder="Buscar por título" aria-label="Buscar por título">
+    <div id="items" class="items"></div>
+  </aside>
+
+  <!-- EDITOR -->
+  <main class="editor" id="editor">
+    <div class="vacio" id="vacio">
+      <h2>Redacción de LOGOS 360</h2>
+      <p>Elige un artículo de la lista o crea uno nuevo. Lo que prepare la IA queda siempre como borrador hasta que una persona lo revise y lo publique.</p>
+      <ol class="pasos">
+        <li><b>Borrador</b> · se escribe o lo prepara la IA</li>
+        <li><b>En revisión</b> · otra persona lo lee y corrige</li>
+        <li><b>Publicado</b> · solo quien tiene permiso de aprobación</li>
+      </ol>
+    </div>
+
+    <form id="form" hidden novalidate>
+      <div class="cab-editor">
+        <div>
+          <span class="estado-pill" id="pill-estado">Borrador</span>
+          <span class="estado-pill ia" id="pill-ia" hidden>Preparado con IA</span>
+          <span class="estado-pill tipo" id="pill-tipo">Divulgación</span>
+        </div>
+        <div class="guardado" id="guardado" aria-live="polite"></div>
+      </div>
+
+      <!-- Asistente IA -->
+      <details class="panel ia-panel" id="panel-ia">
+        <summary>Preparar con IA</summary>
+        <div class="grid2">
+          <label for="ia-tema">Tema<input type="text" id="ia-tema" placeholder="Ej.: Cómo solicitar la tarjeta sanitaria en Tarragona"></label>
+          <label for="ia-notas">Indicaciones (opcional)<input type="text" id="ia-notas" placeholder="Público, tono, puntos que no pueden faltar"></label>
+        </div>
+        <div class="fila">
+          <button type="button" class="btn" id="btn-ia">Generar borrador</button>
+          <span class="nota">Sustituye título, resumen y contenido del formulario. Revísalo siempre antes de publicar.</span>
+        </div>
+      </details>
+
+      <div class="grid3">
+        <label for="a-tipo">Tipo<select id="a-tipo"><option value="divulgacion">Divulgación</option><option value="cientifico">Artículo científico</option></select></label>
+        <label for="a-idioma">Idioma<select id="a-idioma"><option value="es">Español</option><option value="ca">Català</option><option value="fr">Français</option><option value="en">English</option></select></label>
+        <label for="a-cat">Categoría<select id="a-cat"></select></label>
+      </div>
+
+      <label for="a-titulo">Título<input type="text" id="a-titulo" maxlength="200" required></label>
+      <label for="a-slug">Dirección del artículo <span class="nota">Se crea sola a partir del título.</span><input type="text" id="a-slug" maxlength="120"></label>
+      <label for="a-resumen"><span id="lbl-resumen">Resumen</span> <span class="nota" id="nota-resumen">Una o dos frases para la tarjeta.</span><textarea id="a-resumen" rows="3"></textarea></label>
+
+      <!-- Campos científicos -->
+      <fieldset class="panel cientifico" id="campos-cie" hidden>
+        <legend>Datos del artículo científico</legend>
+        <div class="grid2">
+          <label for="c-autores">Autoría <span class="nota">Separa con punto y coma: Apellido, N.; Apellido, N.</span><input type="text" id="c-autores"></label>
+          <label for="c-afil">Afiliación<input type="text" id="c-afil" placeholder="Associació Logos - Projectes Socials, Tarragona"></label>
+        </div>
+        <label for="c-abstract">Abstract (inglés)<textarea id="c-abstract" rows="3"></textarea></label>
+        <div class="grid3">
+          <label for="c-claves">Palabras clave <span class="nota">Separadas por comas</span><input type="text" id="c-claves"></label>
+          <label for="c-rec">Fecha de recepción<input type="date" id="c-rec"></label>
+          <label for="c-acep">Fecha de aceptación<input type="date" id="c-acep"></label>
+        </div>
+        <div class="grid2">
+          <label for="c-doi">DOI (si lo tiene)<input type="text" id="c-doi" placeholder="10.xxxx/xxxxx"></label>
+          <div class="campo">
+            <span class="lbl">PDF del artículo</span>
+            <div class="fila">
+              <input type="file" id="c-pdf" accept="application/pdf" aria-label="Subir PDF">
+              <a id="c-pdf-ver" target="_blank" rel="noopener" hidden>Ver PDF actual</a>
+              <button type="button" class="btn mini ghost" id="c-pdf-quitar" hidden>Quitar</button>
+            </div>
+          </div>
+        </div>
+        <label for="c-refs">Referencias <span class="nota">Una por línea, en formato APA 7</span><textarea id="c-refs" rows="5"></textarea></label>
+      </fieldset>
+
+      <div class="contenido-cab">
+        <span class="lbl">Contenido</span>
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab on" id="tab-escribir" role="tab" aria-selected="true">Escribir</button>
+          <button type="button" class="tab" id="tab-vista" role="tab" aria-selected="false">Vista previa</button>
+        </div>
+      </div>
+      <div class="ayuda-md" id="plantilla-cie" hidden>
+        <button type="button" class="btn mini ghost" id="btn-plantilla">Insertar estructura científica (Introducción, Método, Resultados…)</button>
+      </div>
+      <textarea id="a-contenido" rows="18" aria-label="Contenido en Markdown"></textarea>
+      <div id="vista" class="vista" hidden></div>
+      <p class="nota">Formato: ## subtítulo · **negrita** · - lista · [texto](https://enlace)</p>
+
+      <!-- Imagen -->
+      <fieldset class="panel">
+        <legend>Imagen de portada</legend>
+        <div class="imagen-zona">
+          <img id="img-prev" alt="Vista previa de la portada">
+          <div class="imagen-ops">
+            <label class="radio"><input type="radio" name="img-modo" value="auto" checked> Automática (se diseña sola según la categoría)</label>
+            <button type="button" class="btn mini ghost" id="btn-otra">Probar otra composición</button>
+            <label class="radio"><input type="radio" name="img-modo" value="subida"> Imagen propia</label>
+            <input type="file" id="img-file" accept="image/*" aria-label="Subir imagen propia">
+            <button type="button" class="btn mini ghost" id="btn-png">Descargar portada en PNG</button>
+            <label for="a-alt">Descripción de la imagen (accesibilidad)<input type="text" id="a-alt"></label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="panel">
+        <legend>Publicación</legend>
+        <div class="grid3">
+          <label for="a-etiquetas">Etiquetas <span class="nota">Separadas por comas</span><input type="text" id="a-etiquetas"></label>
+          <label for="a-fecha">Fecha de publicación <span class="nota">Déjala vacía para publicar ya</span><input type="datetime-local" id="a-fecha"></label>
+          <label class="check" for="a-destacado"><input type="checkbox" id="a-destacado"> Destacar en portada</label>
+        </div>
+        <div class="traducir">
+          <span class="lbl">Traducir con IA a:</span>
+          <button type="button" class="btn mini ghost" data-trad="es">Español</button>
+          <button type="button" class="btn mini ghost" data-trad="ca">Català</button>
+          <button type="button" class="btn mini ghost" data-trad="fr">Français</button>
+          <button type="button" class="btn mini ghost" data-trad="en">English</button>
+          <span class="nota" id="versiones"></span>
+        </div>
+      </fieldset>
+
+      <p class="error" id="error" role="alert"></p>
+
+      <div class="barra-acciones">
+        <button type="button" class="btn ghost" id="btn-guardar">Guardar borrador</button>
+        <button type="button" class="btn" id="btn-revision">Enviar a revisión</button>
+        <button type="button" class="btn oro" id="btn-publicar">Publicar</button>
+        <span class="sep"></span>
+        <a class="btn ghost" id="btn-ver" target="_blank" rel="noopener" hidden>Ver publicado</a>
+        <button type="button" class="btn ghost" id="btn-archivar" hidden>Archivar</button>
+        <button type="button" class="btn ghost peligro" id="btn-borrar" hidden>Eliminar</button>
+      </div>
+      <div class="confirmar" id="confirmar" hidden>
+        <span id="confirmar-txt"></span>
+        <button type="button" class="btn peligro-solido" id="confirmar-si">Sí</button>
+        <button type="button" class="btn ghost" id="confirmar-no">Cancelar</button>
+      </div>
+      <p class="nota" id="info-aprob"></p>
+    </form>
+  </main>
+</div>
+
+<!-- Temas de la semana -->
+<div class="modal" id="modal-semana" hidden role="dialog" aria-modal="true" aria-labelledby="ms-tit">
+  <div class="modal-in">
+    <h2 id="ms-tit">Temas propuestos para esta semana</h2>
+    <p class="nota">Elige los que quieras: se crea un borrador con IA para cada uno. Nada se publica sin revisión.</p>
+    <div id="ms-lista" class="ms-lista"></div>
+    <p class="error" id="ms-error"></p>
+    <div class="fila">
+      <button type="button" class="btn" id="ms-crear">Crear borradores seleccionados</button>
+      <button type="button" class="btn ghost" id="ms-cerrar">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+<script src="config.js"></script>
+<script src="portadas.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

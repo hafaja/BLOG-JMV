@@ -1,0 +1,104 @@
+/* LOGOS 360 · Redacción (Intranet). Colores de Logos: azul marino, dorado y crema.
+   Maquetación: lista fija a la izquierda, editor a la derecha. */
+:root{
+  --marino:#1B2A4A; --marino-2:#2C3E63; --oro:#B8912A; --oro-claro:#E9D9A6;
+  --crema:#F7F3E9; --papel:#FFFFFF; --tinta:#1A2236; --gris:#5B6478; --linea:#E3DCC8;
+  --ok:#2E7D4F; --rev:#B26B00; --arch:#7A8193; --mal:#B3412F;
+  --display:"Source Serif 4",Georgia,serif; --texto:"Libre Franklin",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--crema);color:var(--tinta);font:15px/1.5 var(--texto);display:flex;flex-direction:column}
+h1,h2{font-family:var(--display);color:var(--marino);margin:0;text-wrap:balance}
+:focus-visible{outline:3px solid var(--oro);outline-offset:2px}
+[hidden]{display:none!important}
+
+.top{background:var(--marino);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 20px;flex-wrap:wrap}
+.marca{color:#fff;text-decoration:none;font-family:var(--display);font-size:1.15rem;display:flex;align-items:center;gap:8px}
+.marca b{color:var(--oro-claro)} .marca small{font-family:var(--texto);font-size:.8rem;color:#C8CEDC;margin-left:6px}
+.logo{width:30px;height:30px;border:2px solid var(--oro-claro);border-radius:50%;display:grid;place-items:center;color:var(--oro-claro);font-weight:700}
+.top-der{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.quien{font-size:.85rem;color:#C8CEDC}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 15px;border-radius:8px;border:1.5px solid var(--marino);background:var(--marino);color:#fff;font:600 .9rem var(--texto);cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{filter:brightness(1.1)} .btn:disabled{opacity:.6;cursor:wait}
+.btn.oro{background:var(--oro);border-color:var(--oro)}
+.btn.ghost{background:transparent;color:var(--marino)}
+.btn.ghost-claro{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.btn.mini{padding:5px 10px;font-size:.82rem}
+.btn.full{width:100%}
+.btn.peligro{color:var(--mal);border-color:var(--mal)}
+.btn.peligro-solido{background:var(--mal);border-color:var(--mal)}
+
+.acceso{max-width:520px;margin:12vh auto;background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:32px;display:grid;gap:14px;text-align:center;justify-items:center}
+
+.app{flex:1;display:grid;grid-template-columns:360px 1fr;min-height:0}
+.lista{border-right:1px solid var(--linea);background:var(--papel);padding:16px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+.acciones-lista{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.resumen-estados{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.cont{border:1px solid var(--linea);background:var(--crema);border-radius:8px;padding:6px 2px;display:grid;justify-items:center;cursor:pointer;font:inherit;color:var(--gris)}
+.cont b{font-size:1.1rem;color:var(--marino);font-variant-numeric:tabular-nums}
+.cont span{font-size:.68rem;text-align:center;line-height:1.1}
+.cont.on{border-color:var(--marino);background:var(--marino)} .cont.on b,.cont.on span{color:#fff}
+.filtros{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+select,input[type=text],input[type=search],input[type=date],input[type=datetime-local],textarea{font:inherit;padding:8px 10px;border:1px solid var(--linea);border-radius:8px;background:var(--papel);color:var(--tinta);width:100%}
+textarea{resize:vertical;line-height:1.55}
+#a-contenido{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92rem}
+.items{display:grid;gap:6px}
+.item{display:grid;grid-template-columns:52px 1fr;gap:10px;text-align:left;border:1px solid var(--linea);border-radius:10px;background:var(--papel);padding:8px;cursor:pointer;font:inherit;color:inherit}
+.item:hover{border-color:var(--oro)} .item.on{border-color:var(--marino);box-shadow:inset 3px 0 0 var(--marino)}
+.item img{width:52px;height:52px;border-radius:6px;object-fit:cover}
+.item strong{display:block;font-size:.9rem;line-height:1.3}
+.item-meta{display:flex;gap:6px;flex-wrap:wrap;font-size:.75rem;color:var(--gris);margin-top:4px;align-items:center}
+.pt{padding:1px 7px;border-radius:999px;font-weight:600;font-size:.7rem}
+.e-borrador .pt,.pt.e-borrador{background:#ECEEF3;color:var(--marino-2)}
+.pt.e-revision{background:#FFF1D6;color:var(--rev)} .pt.e-publicado{background:#DFF2E6;color:var(--ok)} .pt.e-archivado{background:#EEE;color:var(--arch)}
+.pt.cie{background:var(--marino);color:var(--oro-claro)} .pt.ia{background:#EDE4FB;color:#5B3A9A}
+
+.editor{overflow:auto;padding:24px clamp(16px,3vw,40px) 48px}
+.vacio{max-width:560px;margin:8vh auto;display:grid;gap:12px;color:var(--gris)}
+.pasos{display:grid;gap:8px;padding-left:20px}
+form{max-width:920px;margin:0 auto;display:grid;gap:16px}
+label,.campo{display:grid;gap:5px;font-weight:600;font-size:.88rem;color:var(--marino)}
+.lbl{font-weight:600;font-size:.88rem;color:var(--marino)}
+.nota{font-weight:400;font-size:.8rem;color:var(--gris)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end}
+.fila{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.check,.radio{display:flex;align-items:center;gap:8px;font-weight:500;color:var(--tinta)}
+.panel{border:1px solid var(--linea);background:var(--papel);border-radius:12px;padding:16px 18px;display:grid;gap:14px;margin:0}
+.panel legend,.panel summary{font-family:var(--display);font-weight:600;color:var(--marino);font-size:1.02rem;padding:0 4px;cursor:pointer}
+.panel.cientifico{border-top:4px solid var(--marino)}
+.ia-panel{background:#F6F2FC;border-color:#DCCDF3}
+.ia-panel[open]{gap:14px}
+.cab-editor{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.estado-pill{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:700;background:#ECEEF3;color:var(--marino-2);margin-right:4px}
+.estado-pill.e-revision{background:#FFF1D6;color:var(--rev)} .estado-pill.e-publicado{background:#DFF2E6;color:var(--ok)} .estado-pill.e-archivado{background:#EEE;color:var(--arch)}
+.estado-pill.ia{background:#EDE4FB;color:#5B3A9A} .estado-pill.tipo{background:var(--oro-claro);color:var(--marino)}
+.guardado{font-size:.85rem;color:var(--gris)}
+.contenido-cab{display:flex;justify-content:space-between;align-items:end;margin-bottom:-8px}
+.tabs{display:flex;gap:2px;background:#ECE6D6;border-radius:8px;padding:3px}
+.tab{border:0;background:none;padding:5px 12px;border-radius:6px;font:600 .82rem var(--texto);color:var(--gris);cursor:pointer}
+.tab.on{background:var(--papel);color:var(--marino)}
+.vista{background:var(--papel);border:1px solid var(--linea);border-radius:8px;padding:8px 22px;min-height:300px;font-size:1rem;line-height:1.65}
+.vista h2{font-size:1.35rem;margin:22px 0 8px}
+.imagen-zona{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start}
+.imagen-zona img{width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:8px;border:1px solid var(--linea)}
+.imagen-ops{display:grid;gap:10px;justify-items:start}
+.traducir{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.error{color:var(--mal);font-weight:600;margin:0;min-height:1.2em}
+.barra-acciones{display:flex;gap:10px;flex-wrap:wrap;position:sticky;bottom:0;background:var(--crema);padding:12px 0;border-top:1px solid var(--linea)}
+.sep{flex:1}
+.confirmar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#FFF1D6;border:1px solid #F0D49A;padding:12px 14px;border-radius:10px}
+
+.modal{position:fixed;inset:0;background:rgba(15,25,45,.45);display:grid;place-items:center;padding:16px;z-index:50}
+.modal-in{background:var(--papel);border-radius:14px;padding:24px;max-width:620px;width:100%;display:grid;gap:12px;max-height:90vh;overflow:auto}
+.ms-lista{display:grid;gap:8px}
+.ms-item{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;border:1px solid var(--linea);border-radius:10px;padding:10px 12px;font-weight:400;color:var(--tinta)}
+
+@media (max-width:900px){
+  .app{grid-template-columns:1fr}
+  .lista{border-right:0;border-bottom:1px solid var(--linea);max-height:45vh}
+  .grid2,.grid3,.imagen-zona{grid-template-columns:1fr}
+}
